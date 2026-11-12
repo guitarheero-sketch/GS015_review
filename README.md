@@ -1,41 +1,32 @@
 # GS015 — Grand Senheng Kemaman
 
-Google Review Helper untuk pelanggan GS015. Website statik, mesra telefon, tanpa pemasangan atau API key.
+Google Review Helper untuk pelanggan GS015. Website statik satu fail (`index.html`), mesra telefon, tanpa pemasangan atau API key.
 
-## Publish di GitHub Pages
+Link: https://guitarheero-sketch.github.io/GS015_review/
 
-1. Extract ZIP ini.
-2. Buat repository public, contohnya `gs015-review-helper`.
-3. Upload `index.html`, `gs015-review-comments.json`, dan `.nojekyll` terus ke root repository (jangan letak dalam subfolder).
-4. Dalam Settings > Pages, pilih deployment daripada branch `main`, folder `/ (root)`, kemudian Save.
-5. Selepas deployment selesai, buka URL Pages yang GitHub paparkan.
-
-Link staf boleh ditambah dengan `?staff=SH12345` pada hujung URL website. Gantikan dengan kod staf sebenar (SH + 3–8 digit).
+Link staf: tambah `?staff=9861` (atau `?staff=SH9861`) hujung URL. Kod staf akan dikunci dan masuk sebagai hashtag.
 
 ## Fungsi
 
-- 7 kategori, 50 komen setiap kategori: jumlah 350.
-- Pilihan kumpulan Semua / Servis / S-Coin / Warranty.
-- Ayat boleh dipilih, ditukar dan diedit sebelum disalin.
-- Kiraan S-Coin dan penukaran RM kepada S-Coin.
-- Pengesahan pengalaman warranty sebelum copy.
-- Draf dan sejarah disimpan pada peranti pelanggan.
-- Pilihan copy sahaja, buka Google sahaja, atau copy dan buka Google.
-- Pelanggan semak dan hantar sendiri menggunakan akaun Google mereka.
+- 6 kategori: Dapat S-Coin, Redeem S-Coin, Dapat PlusOne, Claim PlusOne, Tambah RW, Claim RW.
+- Setiap ayat dibina rawak daripada 4 bahagian: pembuka + isi + komen servis + penutup. Ratusan ribu hingga jutaan kombinasi bagi setiap kategori, dipilih rawak setiap kali page dibuka atau "Ayat lain" ditekan.
+- Butang "← Sebelum" untuk balik ke ayat tadi.
+- Hujung review ada 2 hashtag: `#SHxxxx #GrandSenhengKemaman`.
+- Kategori warranty perlu tick pengesahan sebelum copy.
+- Copy & buka Google, Copy sahaja, atau Buka Google sahaja.
+- Pelanggan pilih bintang sendiri ikut pengalaman sebenar.
 
-## Konfigurasi outlet
+## Peraturan dalam ayat
 
-Nama: Grand Senheng Kemaman
-Kod: GS015
-Place ID: ChIJsTTf4iuGyDERHjGUr39tto0
-Hashtag: #GrandSenhengKemaman
+- **Dapat S-Coin:** harga, % cashback, jumlah S-Coin dan nilai RM (selepas tolak 5% maintenance fee). S-Coin sah setahun.
+- **Redeem S-Coin:** tebus 100% guna S-Coin, RM1 = 100 S-Coin; ayat sebut jumlah S-Coin dan nilai barang.
+- **Dapat PlusOne:** Senheng PlusOne® Membership (yuran dari RM12, sah setahun). Warranty kilang + 1 tahun. TV tak layak.
+- **Claim PlusOne:** pilih "Repair, kos ditanggung" atau "Tak boleh repair, dapat baru".
+- **Tambah RW:** small appliance bawah RM400. Ayat sebut harga RW, warranty 1 + 1 = 2 tahun, rosak tukar baru.
+- **Claim RW:** rosak dalam 2 tahun, tukar baru on the spot.
 
-## Mengubah komen
+## Mengubah ayat
 
-Fail `gs015-review-comments.json` menyimpan komen. Kekalkan struktur, 50 komen setiap kategori, placeholder dan hashtag yang diperlukan. Salinan backup JSON juga berada dalam elemen `fallbackData` dalam `index.html`. Kemas kini kedua-duanya dan revision bersama supaya backup sepadan.
+Semua ayat ada dalam elemen `<script type="application/json" id="reviewData">` dalam `index.html` (`openers`, `service`, dan `cores` / `closers` bagi setiap kategori). Fail JSON lama dalam repo ni (`gs015-review-comments.json`, `scoin_comments*.json`) tak lagi digunakan oleh page.
 
-Senario warranty berdasarkan konteks outlet yang diberikan. Pelanggan perlu memilih ayat yang sesuai dengan pembelian atau tuntutan sebenar mereka.
-
-## Semakan
-
-Syntax JavaScript dan ujian simulasi DOM lulus untuk kategori, pengiraan, salinan, draf, validasi staf, pengesahan warranty, pautan Google dan backup offline. Semak paparan pada telefon selepas publish.
+Konfigurasi outlet: Place ID `ChIJsTTf4iuGyDERHjGUr39tto0`.
